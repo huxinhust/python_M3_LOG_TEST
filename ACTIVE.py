@@ -26,12 +26,12 @@ new_dict = {}
 lst_24_1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 lst_24_single = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 lst_24_single2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-node_id_single = 'A5UW1l5U70M2eUid0deLK9dmUo0'
+node_id_single = 'uYM3WxnjVs2HIuc01IbLeIJBHw4'
 connect_num = {}
-start_time0 = '2019-04-24 00:00:00'
-end_time0 = '2019-04-25 00:00:00'
-start_time0_single = '2019-04-24 00:00:00'
-end_time0_single = '2019-04-25 00:00:00'
+start_time0 = '2019-05-05 00:00:00'
+end_time0 = '2019-05-06 00:00:00'
+start_time0_single = '2019-05-05 00:00:00'
+end_time0_single = '2019-05-06 00:00:00'
 # 转为时间数组
 timeArray1 = time.strptime(start_time0, "%Y-%m-%d %H:%M:%S")  # 时间戳
 timeArray2 = time.strptime(end_time0, "%Y-%m-%d %H:%M:%S")  # 时间戳
@@ -69,7 +69,7 @@ def panduan_shijianduan(timestamp):
 
 
 # 导入日志
-fp = open("C://Users/dou/Desktop/1/log/log/naming-server-standalone4.25.log")
+fp = open("C://Users/dou/Desktop/1/log 3/log/naming-server-standalone.log")
 for line1 in fp.readlines():
     if line1.startswith('{"info'):
         init_data.append(json.loads(line1))
@@ -182,7 +182,10 @@ for key1 in table_dict:
 for key2 in lst1:
     del table_dict[key2]
 print(table_dict)
-
+df1=pd.DataFrame(table_dict)
+str15=str11+'.xlsx'
+df1.to_excel(str15,sheet_name='Data1',index=False)
+print(df1)
 len4 = len(new_dict)
 for i in range(len4):
     lst_24.append([])

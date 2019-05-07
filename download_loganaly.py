@@ -30,8 +30,8 @@ normal_count_PR = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 from_cache_PR = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 super_node_id_test = 'Jh4G0VQWXuF9wjlblVsPYXrySBY'
 super_node_id = 'TVfZ-LQn7ZxenP8gsnky-F_J4WM'
-start_time0 = '2019-04-24 00:00:00'
-end_time0 = '2019-04-25 00:00:00'
+start_time0 = '2019-05-06 00:00:00'
+end_time0 = '2019-05-07 00:00:00'
 timeArray1 = time.strptime(start_time0, "%Y-%m-%d %H:%M:%S")  # 时间戳
 timeArray2 = time.strptime(end_time0, "%Y-%m-%d %H:%M:%S")  # 时间戳
 start_timeStamp = 1000 * int(time.mktime(timeArray1))
@@ -56,7 +56,7 @@ def panduan_shijianduan(timestamp):
 
 
 # 导入日志
-fp = open("C://Users/dou/Desktop/新建文件夹/4-24log/4-24log/benchmark-server-standalone1-2019-04-24-1.log", encoding="UTF-8")
+fp = open("C://Users/dou/Desktop/1/benchmark-server-standalone1-2019-05-06-1.log", encoding="UTF-8")
 for line1 in fp.readlines():
     if line1.startswith('{"name":'):
         init_data.append(json.loads(line1))
@@ -146,8 +146,8 @@ print(normal_count_PR)
 print(from_cache_PR)
 print(sum_1)
 print(block_dict)
-# print(download_time)
-# print(max(download_time))
+print(download_time)
+print(min(download_time))
 
 plt.figure(1)
 ax = subplot(1, 1, 1)
@@ -196,17 +196,18 @@ plt.bar(x, y, color='blue')
 # 图2
 plt.figure(4)
 ax = subplot(1, 1, 1)
-res = stats.relfreq(download_time, numbins=10)
-x = res.lowerlimit + np.linspace(0, res.binsize * res.frequency.size, res.frequency.size)
-y = np.cumsum(res.frequency)
-plt.plot(x, y)
-plt.title('数据块下载耗时的累积分布直方图')
+# res = stats.relfreq(download_time, numbins=10)
+# x = res.lowerlimit + np.linspace(0, res.binsize * res.frequency.size, res.frequency.size)
+# y = np.cumsum(res.frequency)
+plt.hist(download_time,100000,density=True, cumulative=True, histtype='step')
+#plt.plot(x, y)
+plt.title('数据块下载耗时的累积分布图')
 plt.xlabel('download time/秒')
 plt.ylabel('CDF')
 plt.grid(True)  # 产生网格
 
 plt.figure(5)
-ax = subplot(3, 1, 1)
+ax = subplot(2, 1, 1)
 xmajorLocator = MultipleLocator(1)
 x = np.arange(24)
 str3 = '%s%s%s%s' % (str11, '——', str12, '内，P2P流量统计情况')
@@ -217,41 +218,25 @@ plt.grid(True)  # 产生网格
 plt.title(str3)
 plt.legend()
 plt.xlabel('时间/小时')
-plt.ylabel('概率')
+plt.ylabel('利用率')
 plt.xticks(x, (
     '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
     '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '   21:00', '   22:00', '   23:00'))
-plt.figure(5)
-ax = subplot(3, 1, 2)
-xmajorLocator = MultipleLocator(1)
-x = np.arange(24)
-str3 = '%s%s%s%s' % (str11, '——', str12, '内，P2P流量统计情况')
-plt.bar(x, height=super_count_PR,color='red',label="From Super Node", bottom=from_cache_PR)
-plt.bar(x, height=normal_count_PR,color='green',label="From User Node")
-plt.bar(x, height=from_cache_PR,color='blue',label="From Cache",bottom=normal_count_PR)
-plt.grid(True)  # 产生网格
-plt.title(str3)
-plt.xlabel('时间/小时')
-plt.ylabel('概率')
-plt.xticks(x, (
-    '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '   21:00', '   22:00', '   23:00'))
-plt.legend()
-plt.figure(5)
-ax = subplot(3, 1, 3)
-xmajorLocator = MultipleLocator(1)
-x = np.arange(24)
-bar_width = 0.3
-str3 = '%s%s%s%s' % (str11, '——', str12, '内，P2P流量统计情况')
-plt.bar(x-bar_width, super_count_PR, width=0.3, color='red', label="From Super Node")
-plt.bar(x+ bar_width , normal_count_PR, width=0.3, color='green', label="From User Node")
-plt.bar(x  , from_cache_PR, width=0.3, color='blue', label="From Cache")
-plt.grid(True)  # 产生网格
-plt.title(str3)
-plt.xlabel('时间/小时')
-plt.ylabel('概率')
-plt.xticks(x, (
-    '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '   21:00', '   22:00', '   23:00'))
-plt.legend()
+# plt.figure(5)
+# ax = subplot(2, 1, 2)
+# xmajorLocator = MultipleLocator(1)
+# x = np.arange(24)
+# bar_width = 0.3
+# str3 = '%s%s%s%s' % (str11, '——', str12, '内，P2P流量统计情况')
+# plt.bar(x-bar_width, super_count_PR, width=0.3, color='red', label="From Super Node")
+# plt.bar(x+ bar_width , normal_count_PR, width=0.3, color='green', label="From User Node")
+# plt.bar(x  , from_cache_PR, width=0.3, color='blue', label="From Cache")
+# plt.grid(True)  # 产生网格
+# plt.title(str3)
+# plt.xlabel('时间/小时')
+# plt.ylabel('概率')
+# plt.xticks(x, (
+#     '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+#     '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '   21:00', '   22:00', '   23:00'))
+# plt.legend()
 plt.show()
