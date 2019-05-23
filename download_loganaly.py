@@ -54,7 +54,6 @@ def panduan_shijianduan(timestamp):
     kk = math.floor(time1)
     return kk
 
-
 # 导入日志
 fp = open("C://Users/dou/Desktop/1/benchmark-server-standalone1-2019-05-06-1.log", encoding="UTF-8")
 for line1 in fp.readlines():

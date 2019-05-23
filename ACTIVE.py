@@ -26,12 +26,12 @@ new_dict = {}
 lst_24_1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 lst_24_single = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 lst_24_single2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-node_id_single = 'uYM3WxnjVs2HIuc01IbLeIJBHw4'
+node_id_single = 'vtadlCs3NHmddm2Q4JiSuc8yEcI'
 connect_num = {}
-start_time0 = '2019-05-05 00:00:00'
-end_time0 = '2019-05-06 00:00:00'
-start_time0_single = '2019-05-05 00:00:00'
-end_time0_single = '2019-05-06 00:00:00'
+start_time0 = '2019-05-06 00:00:00'
+end_time0 = '2019-05-07 00:00:00'
+start_time0_single = '2019-05-06 00:00:00'
+end_time0_single = '2019-05-07 00:00:00'
 # 转为时间数组
 timeArray1 = time.strptime(start_time0, "%Y-%m-%d %H:%M:%S")  # 时间戳
 timeArray2 = time.strptime(end_time0, "%Y-%m-%d %H:%M:%S")  # 时间戳
@@ -41,8 +41,8 @@ start_timeStamp = 1000 * int(time.mktime(timeArray1))
 end_timeStamp = 1000 * int(time.mktime(timeArray2))
 start_timeStamp_single = 1000 * int(time.mktime(timeArray3))
 end_timeStamp_single = 1000 * int(time.mktime(timeArray4))
-print(start_timeStamp)
-print(end_timeStamp)
+#print(start_timeStamp)
+#print(end_timeStamp)
 timestam11 = float(start_timeStamp / 1000)
 timeArray11 = time.localtime(timestam11)
 str11 = '%s%s%s%s%s%s%s%s' % (
@@ -69,7 +69,7 @@ def panduan_shijianduan(timestamp):
 
 
 # 导入日志
-fp = open("C://Users/dou/Desktop/1/log 3/log/naming-server-standalone.log")
+fp = open("C://Users/dou/Desktop/1/true_data/naming-server-standalone-2019-05-09-1.log")
 for line1 in fp.readlines():
     if line1.startswith('{"info'):
         init_data.append(json.loads(line1))
@@ -181,11 +181,11 @@ for key1 in table_dict:
 #print(lst1)
 for key2 in lst1:
     del table_dict[key2]
-print(table_dict)
+#print(table_dict)
 df1=pd.DataFrame(table_dict)
 str15=str11+'.xlsx'
 df1.to_excel(str15,sheet_name='Data1',index=False)
-print(df1)
+#print(df1)
 len4 = len(new_dict)
 for i in range(len4):
     lst_24.append([])
